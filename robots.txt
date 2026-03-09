@@ -1,0 +1,9 @@
+# robots.txt for rjartsandevents.in
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://rjartsandevents.in/sitemap.xml
+
+# Disallow utility scripts
+Disallow: /add_watermark.py
