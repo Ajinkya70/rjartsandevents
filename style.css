@@ -162,9 +162,14 @@ body.zone-contact .cursor-ring.hover { background: rgba(114,232,160,.08); }
   padding: 1.2rem clamp(1.5rem, 4vw, 3rem);
   transition: background .3s, backdrop-filter .3s;
 }
-.nav.scrolled {
+.nav.scrolled::before {
+  content: '';
+  position: absolute;
+  inset: 0;
   background: rgba(14,14,14,.85);
   backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: -1;
 }
 
 .nav-logo {
@@ -559,6 +564,30 @@ section { padding: clamp(5rem, 12vw, 9rem) clamp(1.5rem, 5vw, 4rem); }
   color: var(--bg);
   background: var(--accent);
   border-color: var(--accent);
+}
+
+/* Sub-filters row */
+.work-subfilters {
+  display: flex; gap: .5rem; flex-wrap: wrap;
+  margin-bottom: 3rem;
+  animation: fadeReveal .4s var(--ease-out) forwards;
+}
+.work-back {
+  font-family: var(--font-mono);
+  font-size: .7rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: transparent;
+  border: 1px solid var(--accent);
+  padding: .55rem 1.3rem;
+  border-radius: 60px;
+  cursor: none;
+  transition: all .3s;
+}
+.work-back:hover {
+  color: var(--bg);
+  background: var(--accent);
 }
 
 .work-grid {
@@ -1655,6 +1684,7 @@ img.brand-logo[alt="ZEE5"] {
 
   /* Work section — center filters */
   .work-filters { justify-content: center; }
+  .work-subfilters { justify-content: center; }
 
   /* Film strip */
   .film-frame { width: 130px; min-width: 130px; padding: 1rem .8rem; }
@@ -1723,6 +1753,7 @@ img.brand-logo[alt="ZEE5"] {
 
   /* Gallery / Work filters */
   .work-filter, .gallery-filter { font-size: .6rem; padding: .45rem 1rem; }
+  .work-back { font-size: .6rem; padding: .45rem 1rem; }
 
   /* Lightbox caption */
   .lb-caption { max-width: 80vw; font-size: .75rem; }

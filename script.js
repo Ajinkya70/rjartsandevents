@@ -179,9 +179,91 @@
     requestAnimationFrame(step);
   }
 
-  /* ---------- Work Filter ---------- */
-  var filterBtns = document.querySelectorAll('.work-filter');
+  /* ---------- Work Filter (Two-Level) ---------- */
+  var workFiltersRow = document.getElementById('workFilters');
+  var workSubfiltersRow = document.getElementById('workSubfilters');
+  var filterBtns = workFiltersRow.querySelectorAll('.work-filter');
   var workCards = document.querySelectorAll('.work-card');
+
+  var subCategories = {
+    film: [
+      { label: 'All Film & OTT', value: 'all' },
+      { label: 'Netflix', value: 'netflix' },
+      { label: 'ZEE5', value: 'zee5' },
+      { label: 'Bollywood', value: 'bollywood' }
+    ],
+    brand: [
+      { label: 'All Brands', value: 'all' },
+      { label: 'Dell', value: 'dell' },
+      { label: 'Teachmint', value: 'teachmint' },
+      { label: "Pond's", value: 'ponds' },
+      { label: 'Zandu', value: 'zandu' },
+      { label: 'Tata AIG', value: 'tataaig' },
+      { label: 'Man Matters', value: 'manmatters' },
+      { label: '#BuiltThatWay', value: 'builtthatway' }
+    ]
+  };
+
+  function filterCards(category, subcategory) {
+    workCards.forEach(function (card) {
+      var cat = card.getAttribute('data-category');
+      var sub = card.getAttribute('data-subcategory') || '';
+      var show = false;
+
+      if (category === 'all') {
+        show = true;
+      } else if (subcategory && subcategory !== 'all') {
+        show = cat === category && sub === subcategory;
+      } else {
+        show = cat === category;
+      }
+
+      if (show) {
+        card.style.display = '';
+        card.style.animation = 'fadeReveal .5s var(--ease-out) forwards';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  function showSubfilters(category) {
+    var subs = subCategories[category];
+    if (!subs) return;
+
+    workFiltersRow.style.display = 'none';
+    workSubfiltersRow.style.display = '';
+    workSubfiltersRow.innerHTML = '';
+
+    // Back button
+    var backBtn = document.createElement('button');
+    backBtn.className = 'work-filter work-back';
+    backBtn.innerHTML = '\u2190 All';
+    backBtn.addEventListener('click', function () {
+      workSubfiltersRow.style.display = 'none';
+      workFiltersRow.style.display = '';
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      filterBtns[0].classList.add('active');
+      filterCards('all');
+    });
+    workSubfiltersRow.appendChild(backBtn);
+
+    // Sub-filter buttons
+    subs.forEach(function (sub, i) {
+      var btn = document.createElement('button');
+      btn.className = 'work-filter' + (i === 0 ? ' active' : '');
+      btn.textContent = sub.label;
+      btn.setAttribute('data-subfilter', sub.value);
+      btn.addEventListener('click', function () {
+        workSubfiltersRow.querySelectorAll('.work-filter').forEach(function (b) {
+          b.classList.remove('active');
+        });
+        btn.classList.add('active');
+        filterCards(category, sub.value);
+      });
+      workSubfiltersRow.appendChild(btn);
+    });
+  }
 
   filterBtns.forEach(function (btn) {
     btn.addEventListener('click', function () {
@@ -190,15 +272,16 @@
       filterBtns.forEach(function (b) { b.classList.remove('active'); });
       btn.classList.add('active');
 
-      workCards.forEach(function (card) {
-        var category = card.getAttribute('data-category');
-        if (filter === 'all' || category === filter) {
-          card.style.display = '';
-          card.style.animation = 'fadeReveal .5s var(--ease-out) forwards';
-        } else {
-          card.style.display = 'none';
-        }
-      });
+      if (subCategories[filter]) {
+        // Has sub-categories — show drill-down
+        filterCards(filter);
+        showSubfilters(filter);
+      } else {
+        // No sub-categories — direct filter
+        workSubfiltersRow.style.display = 'none';
+        workFiltersRow.style.display = '';
+        filterCards(filter);
+      }
     });
   });
 

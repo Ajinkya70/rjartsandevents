@@ -247,7 +247,7 @@
     <div class="section-tag reveal">Selected work</div>
     <h2 class="section-heading reveal reveal-d1">A decade of<br><em>visual stories.</em></h2>
 
-    <div class="work-filters reveal reveal-d2">
+    <div class="work-filters reveal reveal-d2" id="workFilters">
       <button class="work-filter active" data-filter="all">All</button>
       <button class="work-filter" data-filter="film">Film &amp; OTT</button>
       <button class="work-filter" data-filter="brand">Brands</button>
@@ -255,9 +255,13 @@
       <button class="work-filter" data-filter="concept">Concepts</button>
     </div>
 
+    <div class="work-subfilters reveal" id="workSubfilters" style="display:none">
+      <!-- Populated dynamically by JS -->
+    </div>
+
     <div class="work-grid">
       <!-- Jersey -->
-      <div class="work-card span-8 reveal" data-category="film">
+      <div class="work-card span-8 reveal" data-category="film" data-subcategory="bollywood">
         <span class="work-card-label">Film</span>
         <img class="work-card-img" src="assets/page3_img1.jpeg" alt="Jersey set concept design" loading="lazy">
         <div class="work-card-info">
@@ -268,7 +272,7 @@
       </div>
 
       <!-- Kaala Paani -->
-      <div class="work-card span-4 reveal reveal-d1" data-category="film">
+      <div class="work-card span-4 reveal reveal-d1" data-category="film" data-subcategory="netflix">
         <span class="work-card-label">Netflix</span>
         <img class="work-card-img" src="assets/page15_img1.jpeg" alt="Kaala Paani Netflix set design" loading="lazy">
         <div class="work-card-info">
@@ -279,7 +283,7 @@
       </div>
 
       <!-- Voot/Dell -->
-      <div class="work-card span-5 reveal" data-category="brand">
+      <div class="work-card span-5 reveal" data-category="brand" data-subcategory="dell">
         <span class="work-card-label">Brand</span>
         <img class="work-card-img" src="assets/page4_img1.jpeg" alt="Voot Select Dell campaign set" loading="lazy">
         <div class="work-card-info">
@@ -290,7 +294,7 @@
       </div>
 
       <!-- Rangbaaz -->
-      <div class="work-card span-7 reveal reveal-d1" data-category="film">
+      <div class="work-card span-7 reveal reveal-d1" data-category="film" data-subcategory="zee5">
         <span class="work-card-label">ZEE5</span>
         <img class="work-card-img" src="assets/page14_img1.jpeg" alt="Rangbaaz ZEE5 set design" loading="lazy">
         <div class="work-card-info">
@@ -301,7 +305,7 @@
       </div>
 
       <!-- Teachmint -->
-      <div class="work-card span-6 reveal" data-category="brand">
+      <div class="work-card span-6 reveal" data-category="brand" data-subcategory="teachmint">
         <span class="work-card-label">Brand</span>
         <img class="work-card-img" src="assets/page5_img1.jpeg" alt="Teachmint brand set design" loading="lazy">
         <div class="work-card-info">
@@ -312,7 +316,7 @@
       </div>
 
       <!-- Pond's -->
-      <div class="work-card span-6 reveal reveal-d1" data-category="brand">
+      <div class="work-card span-6 reveal reveal-d1" data-category="brand" data-subcategory="ponds">
         <span class="work-card-label">Brand</span>
         <img class="work-card-img" src="assets/page13_img1.jpeg" alt="Pond's beauty brand set design" loading="lazy">
         <div class="work-card-info">
@@ -323,7 +327,7 @@
       </div>
 
       <!-- 36 Farmhouse -->
-      <div class="work-card span-7 reveal" data-category="film">
+      <div class="work-card span-7 reveal" data-category="film" data-subcategory="zee5">
         <span class="work-card-label">ZEE5 Film</span>
         <img class="work-card-img" src="assets/page10_img1.jpeg" alt="36 Farmhouse ZEE5 film set" loading="lazy">
         <div class="work-card-info">
@@ -334,7 +338,7 @@
       </div>
 
       <!-- Zandu -->
-      <div class="work-card span-5 reveal reveal-d1" data-category="brand">
+      <div class="work-card span-5 reveal reveal-d1" data-category="brand" data-subcategory="zandu">
         <span class="work-card-label">Brand</span>
         <img class="work-card-img" src="assets/page11_img1.jpeg" alt="Zandu brand campaign set" loading="lazy">
         <div class="work-card-info">
@@ -356,7 +360,7 @@
       </div>
 
       <!-- #BuiltThatWay -->
-      <div class="work-card span-4 reveal reveal-d1" data-category="brand">
+      <div class="work-card span-4 reveal reveal-d1" data-category="brand" data-subcategory="builtthatway">
         <span class="work-card-label">Brand</span>
         <img class="work-card-img" src="assets/page2_img1.jpeg" alt="Built That Way fitness campaign" loading="lazy">
         <div class="work-card-info">
@@ -389,7 +393,7 @@
       </div>
 
       <!-- Tata AIG -->
-      <div class="work-card span-6 reveal reveal-d1" data-category="brand">
+      <div class="work-card span-6 reveal reveal-d1" data-category="brand" data-subcategory="tataaig">
         <span class="work-card-label">Brand</span>
         <img class="work-card-img" src="assets/page6_img1.jpeg" alt="Tata AIG insurance commercial set" loading="lazy">
         <div class="work-card-info">
@@ -400,7 +404,7 @@
       </div>
 
       <!-- Man Matters -->
-      <div class="work-card span-12 reveal" data-category="brand">
+      <div class="work-card span-12 reveal" data-category="brand" data-subcategory="manmatters">
         <span class="work-card-label">Brand</span>
         <img class="work-card-img" src="assets/page7_img1.jpeg" alt="Man Matters brand set design" loading="lazy">
         <div class="work-card-info">
